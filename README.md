@@ -1,8 +1,12 @@
 
-make target=raspberry
 
-sudo bin/window_farm_client --token=de9c95edfe9e41cea91ffd76339d588d
+## Build with
+`make target=raspberry`
 
+## Run with
+`sudo ./window_farm_client --token=TOKEN_HERE`
+
+## Some things for me to remember
 
 Tip: error while loading shared Libraries: liblog4cplus-1.1.so.9: CAN not shared Open Object File: No SUCH File or Directory
 
