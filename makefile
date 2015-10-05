@@ -57,16 +57,12 @@ endif
 SOURCES=$(wildcard *.cpp) $(BLYNK_DIR)/linux/BlynkDebug.cpp $(BLYNK_DIR)/utility/BlynkHandlers.cpp
 
 OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=bin/window_farm_client
+EXECUTABLE=window_farm_client
 
-all: folder $(SOURCES) $(EXECUTABLE)
-
-folder:
-	@mkdir -p bin
+all: $(SOURCES) $(EXECUTABLE)
 
 clean:
-	-rm $(OBJECTS)
-	-rm -rf bin/
+	-rm -f $(OBJECTS) $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS) 
 	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
