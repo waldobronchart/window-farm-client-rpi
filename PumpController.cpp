@@ -97,7 +97,7 @@ float PumpController::GetStateCompletion()
 			return m_currentTimer / m_pumpDuration;
 	}
 
-	return m_currentTimer;
+	return 0;
 }
 
 void PumpController::ChangeState(PumpControllerState newState)
@@ -106,7 +106,7 @@ void PumpController::ChangeState(PumpControllerState newState)
 		return;
 
 	LOG_DEBUGF("...PumpController: ChangeState from %s to %s", 
-		PUMP_STATE_NAMES[m_state].c_str(), PUMP_STATE_NAMES[newState].c_str(), m_currentTimer);
+		PUMP_STATE_NAMES[m_state].c_str(), PUMP_STATE_NAMES[newState].c_str());
 
 	switch (newState)
 	{

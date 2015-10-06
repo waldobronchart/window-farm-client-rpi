@@ -59,7 +59,7 @@ void onPumpStateChanged(PumpControllerState prevState, PumpControllerState currS
 	Blynk.virtualWrite(BLYNK_PIN_STATE_DISABLED, (currState == PUMP_STATE_DISABLED) ? 1 : 0);
 	Blynk.virtualWrite(BLYNK_PIN_STATE_WAITING, (currState == PUMP_STATE_WAITING) ? 1 : 0);
 	Blynk.virtualWrite(BLYNK_PIN_STATE_PUMPING, (currState == PUMP_STATE_PUMPING) ? 1 : 0);
-	Blynk.virtualWrite(BLYNK_PIN_STATE_COMPLETION, int(pumpController->GetStateCompletion() * 100));
+	Blynk.virtualWrite(BLYNK_PIN_STATE_COMPLETION, pumpController->GetStateCompletion() * 100);
 }
 
 void pushPrefsToServer()
@@ -129,7 +129,7 @@ int main(int argc, char* argv[])
 			if (stateCompletionTimer > 1)
 			{
 				float completion = pumpController->GetStateCompletion();
-				Blynk.virtualWrite(BLYNK_PIN_STATE_COMPLETION, int(completion * 100));
+				Blynk.virtualWrite(BLYNK_PIN_STATE_COMPLETION, completion * 100);
 				stateCompletionTimer = 0;
 			}
 
