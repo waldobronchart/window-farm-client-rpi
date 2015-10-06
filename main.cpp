@@ -230,10 +230,9 @@ BLYNK_READ(BLYNK_PIN_WAIT_TIME_MINS)
 	Blynk.virtualWrite(BLYNK_PIN_WAIT_TIME_MINS, Preferences::Instance->WaitDurationInSecs / 60);
 }
 
-BLYNK_READ(BLYNK_PIN_GRAPH_PUMP_ON)
+BLYNK_READ(BLYNK_PIN_GRAPH_PUMP_STATE)
 {
-	LOG_DEBUG("BLYNK_PIN_GRAPH_PUMP_ON value requested");
-	PumpControllerState currState = pumpController->GetState();
-	Blynk.virtualWrite(BLYNK_PIN_GRAPH_PUMP_ON, (currState == PUMP_STATE_PUMPING) ? 1 : 0);
+	LOG_DEBUG("BLYNK_PIN_GRAPH_PUMP_STATE value requested");
+	Blynk.virtualWrite(BLYNK_PIN_GRAPH_PUMP_STATE, (int)pumpController->GetState());
 }
 
