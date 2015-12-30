@@ -83,6 +83,7 @@ int main(int argc, char* argv[])
 	{
 		// Logging setup
 		LogUtil::Setup();
+		LOG_INFO("BOOTING UP");
 
 		// Blynk setup
 		const char *auth, *serv, *port;
@@ -104,6 +105,7 @@ int main(int argc, char* argv[])
 		unsigned int prevTimeMs = millis();
 		bool previouslyConnected = false;
 		float stateCompletionTimer = 0;
+		float graphUpdateTimer = 0;
 		while (true)
 		{
 			Blynk.run();
@@ -131,6 +133,13 @@ int main(int argc, char* argv[])
 				float completion = pumpController->GetStateCompletion();
 				Blynk.virtualWrite(BLYNK_PIN_STATE_COMPLETION, completion * 100);
 				stateCompletionTimer = 0;
+			}
+
+			// Update the graph values
+			if (graphUpdateTimer > 30)
+			{
+				Blynk.virtualWrite(BLYNK_PIN_GRAPH_PUMP_STATE, (int)pumpController->GetState());
+				graphUpdateTimer = 0;
 			}
 
 			// sleep 1ms
