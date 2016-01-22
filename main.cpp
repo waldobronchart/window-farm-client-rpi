@@ -131,6 +131,7 @@ int main(int argc, char* argv[])
 			if (stateCompletionTimer > 1)
 			{
 				float completion = pumpController->GetStateCompletion();
+				LOG_TRACE("State completion at %fpc", completion * 100);
 				Blynk.virtualWrite(BLYNK_PIN_STATE_COMPLETION, completion * 100);
 				stateCompletionTimer = 0;
 			}
@@ -244,4 +245,3 @@ BLYNK_READ(BLYNK_PIN_GRAPH_PUMP_STATE)
 	LOG_DEBUG("BLYNK_PIN_GRAPH_PUMP_STATE value requested");
 	Blynk.virtualWrite(BLYNK_PIN_GRAPH_PUMP_STATE, (int)pumpController->GetState());
 }
-
